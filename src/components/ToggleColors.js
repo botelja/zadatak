@@ -4,7 +4,6 @@ function ToggleColors(props) {
   const [color, setColor] = useState('');
   const [isBlack, setIsBlack] = useState(true);
 
-  useEffect(() => {});
   const handleColor = () => {
     if (props.colors.length > 0) {
       let randomColor =
@@ -14,13 +13,15 @@ function ToggleColors(props) {
     }
   };
 
+  const text = 'Hello';
+
   return (
     <div>
       <p
         style={isBlack ? { color: 'black' } : { color: `${color}` }}
         onClick={handleColor}
       >
-        Hello
+        {props.text ? props.text : text}
       </p>
     </div>
   );

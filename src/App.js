@@ -27,7 +27,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <ToggleColors colors={colors} />
+        <ToggleColors colors={colors} text={input} />
         <input type="text" onChange={handleInput} value={input} />
         <a
           className="App-link"
