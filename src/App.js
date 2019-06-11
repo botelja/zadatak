@@ -1,12 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import ToggleColors from './components/ToggleColors';
 import './App.css';
 
 function App() {
-
-  const [color, setColor] = useState('black');
-  const [randomColor, setRandomColor] = useState([]);
+  const [colors, setColors] = useState([]);
   const [input, setInput] = useState('');
 
   useEffect(() => {
@@ -16,21 +14,20 @@ function App() {
   const getColors = async () => {
     const response = await fetch('http://www.colr.org/json/color/random');
     const data = await response.json();
-    setRandomColor(data.colors[0].tags.map(color => color.name));
-  }
+    if (data.colors[0].tags.length > 1) {
+      setColors(data.colors[0].tags);
+    }
+  };
 
   const handleInput = (event) => {
     setInput(event.target.value);
-  }
+  };
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <ToggleColors defaultColor={color} 
-                      changeColor={randomColor}
-                      text={input}
-        />
+        <ToggleColors colors={colors} />
         <input type="text" onChange={handleInput} value={input} />
         <a
           className="App-link"

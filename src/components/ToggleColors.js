@@ -1,32 +1,29 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
 
-function ToggleColors({defaultColor, changeColor, text}) {
+function ToggleColors(props) {
+  const [color, setColor] = useState('');
+  const [isBlack, setIsBlack] = useState(true);
 
-    const[randomColor, setRandomColor] = useState(defaultColor);
-    const[info, setInfo] = useState(`Edit <code>src/App.js</code> and save to reload.`)
-
-    useEffect(() => {
-        document.body.style.color = randomColor;
-    })
-
-
-    const handleColor = () => {
-        defaultColor = setRandomColor(changeColor[Math.floor(Math.random() * changeColor.length)]);
-    };
-
-    const handleText = () => {
-        setInfo(text);
+  useEffect(() => {});
+  const handleColor = () => {
+    if (props.colors.length > 0) {
+      let randomColor =
+        props.colors[Math.floor(Math.random() * props.colors.length)].name;
+      setColor(randomColor);
+      setIsBlack(!isBlack);
     }
+  };
 
-    
-    return (
-        <div>
-            <p style={{color: defaultColor}} onClick={handleColor} onChange={handleText}> 
-                {info}
-            </p> 
-           
-        </div>
-    )
+  return (
+    <div>
+      <p
+        style={isBlack ? { color: 'black' } : { color: `${color}` }}
+        onClick={handleColor}
+      >
+        Hello
+      </p>
+    </div>
+  );
 }
 
 export default ToggleColors;
