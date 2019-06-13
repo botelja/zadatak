@@ -6,6 +6,7 @@ import './App.css';
 function App() {
   const [colors, setColors] = useState([]);
   const [input, setInput] = useState('');
+  const [text, setText] = useState('');
 
   useEffect(() => {
     getColors();
@@ -23,12 +24,20 @@ function App() {
     setInput(event.target.value);
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setText(input);
+    setInput('');
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <ToggleColors colors={colors} text={input} />
-        <input type="text" onChange={handleInput} value={input} />
+        <ToggleColors colors={colors} inputText={text ? text : input} />
+        <form  onSubmit={handleSubmit}>
+          <input type="text" onChange={handleInput} value={input} />
+        </form> 
         <a
           className="App-link"
           href="https://reactjs.org"

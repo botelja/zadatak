@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
 
-function ToggleColors(props) {
+function ToggleColors({colors, inputText}) {
   const [color, setColor] = useState('');
   const [isBlack, setIsBlack] = useState(true);
+  const [text, setText] = useState('Hello');
 
   const handleColor = () => {
-    if (props.colors.length > 0) {
+    if (colors.length > 0) {
       let randomColor =
-        props.colors[Math.floor(Math.random() * props.colors.length)].name;
+        colors[Math.floor(Math.random() * colors.length)].name;
       setColor(randomColor);
       setIsBlack(!isBlack);
     }
   };
 
-  const text = 'Hello';
+  const handleText = () => {
+    setText(inputText);
+  }
 
   return (
-    <div>
+    <div onLoad={handleText}>
       <p
-        style={isBlack ? { color: 'black' } : { color: `${color}` }}
+        style={{color: isBlack ? 'black' : `${color}`}}
         onClick={handleColor}
       >
-        {props.text ? props.text : text}
+        { inputText ? inputText : text }
       </p>
     </div>
   );
