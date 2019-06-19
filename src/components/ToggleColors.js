@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 function ToggleColors({colors, inputText}) {
   const [color, setColor] = useState('');
   const [isBlack, setIsBlack] = useState(true);
-  const [text, setText] = useState('Hello');
+  
 
   const handleColor = () => {
     if (colors.length > 0) {
@@ -14,17 +14,13 @@ function ToggleColors({colors, inputText}) {
     }
   };
 
-  const handleText = () => {
-    setText(inputText);
-  }
-
   return (
-    <div onLoad={handleText}>
+    <div>
       <p
         style={{color: isBlack ? 'black' : `${color}`}}
         onClick={handleColor}
       >
-        { inputText ? inputText : text }
+        { inputText ? inputText : 'Hello' }
       </p>
     </div>
   );

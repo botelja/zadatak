@@ -15,6 +15,7 @@ function App() {
   const getColors = async () => {
     const response = await fetch('http://www.colr.org/json/color/random');
     const data = await response.json();
+    console.log(data.colors);
     if (data.colors[0].tags.length > 1) {
       setColors(data.colors[0].tags);
     }
@@ -22,6 +23,7 @@ function App() {
 
   const handleInput = (event) => {
     setInput(event.target.value);
+    setText('');
   };
 
   const handleSubmit = (event) => {
@@ -34,9 +36,16 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <ToggleColors colors={colors} inputText={text ? text : input} />
+        <ToggleColors 
+          colors={colors} 
+          inputText={text ? text : input} 
+        />
         <form  onSubmit={handleSubmit}>
-          <input type="text" onChange={handleInput} value={input} />
+          <input 
+            type="text" 
+            onChange={handleInput} 
+            value={input} 
+          />
         </form> 
         <a
           className="App-link"
